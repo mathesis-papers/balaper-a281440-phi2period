@@ -1,0 +1,66 @@
+{
+  "files": {
+    "pdf": {
+      "bytes": 113157,
+      "matches_public": true,
+      "path": "paper.pdf",
+      "public_sha256": "dc5fb0a7b67d45021c3949d969e5aa6288b5a521b4be8bcc6c96be4b53f63920",
+      "sha256": "dc5fb0a7b67d45021c3949d969e5aa6288b5a521b4be8bcc6c96be4b53f63920"
+    },
+    "source": {
+      "bytes": 29206,
+      "matches_public": true,
+      "path": "source.archive",
+      "public_sha256": "be940df2bc7526adf2edc375ea1038b5cb43c8aec6b1e816d5a964d534d88718",
+      "sha256": "be940df2bc7526adf2edc375ea1038b5cb43c8aec6b1e816d5a964d534d88718"
+    }
+  },
+  "source_identity": "Mathesis public projection",
+  "work": {
+    "abstract_text": "We give an alternative proof of Lien-Hung Su's theorem (31 October 2026, Theorem 3.2 and Corollary 3.3) resolving Peter Bala's totient-square period conjecture in OEIS A281440 (COMMENT, 19 February 2026; revision 17, 6 November 2026). For the integral coefficients a(n)=(2n)![x^(2n)]C(x), with C(x)=cosh(integral_0^x C(t)^7 dt), every modulus m>=3 admits the eventual period phi(m)^2/2; moduli 1 and 2 admit period one. The proof replaces idempotent lifting by an elementary binomial identity for endomorphisms and includes the vanishing branch at the prime five. The same argument covers the four companion conjectures in A281180, A281181, A281183 and A281184, and extends the half-square bound to every integer exponent a>=2 in the associated quadratic derivation. We prove the resulting odd-exponent corollaries, source derivative and algebraic identities, and finite-dimensional certificates for the exact period 72 modulo 13 and the two displayed A281428 examples.",
+    "authors": [
+      {
+        "affiliation": "ChronoAI Pte Ltd, Singapore",
+        "name": "Haobo Ma"
+      },
+      {
+        "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore",
+        "name": "Wenlin Zhang"
+      }
+    ],
+    "concept_doi": null,
+    "current_version": 2,
+    "doi": null,
+    "lean_source": {
+      "revision": "92de86888730265f84e24d28bdb67546c543a966",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/92de86888730265f84e24d28bdb67546c543a966/D5/S1/Recurrence/Periodic/BalaA281440TotientSquarePeriod.lean"
+    },
+    "license": "CC-BY-4.0",
+    "msc": [],
+    "pdf": {
+      "bytes": 113157,
+      "sha256": "dc5fb0a7b67d45021c3949d969e5aa6288b5a521b4be8bcc6c96be4b53f63920",
+      "url": "/api/v1/collected-papers/balaper-a281440-phi2period/files/pdf?version=2"
+    },
+    "previous_version": null,
+    "publication": "public",
+    "published_on": "2026-11-23T15:22:06.237687730Z",
+    "record": "balaper-a281440-phi2period",
+    "repository_name": "balaper-a281440-phi2period",
+    "source": {
+      "bytes": 29206,
+      "sha256": "be940df2bc7526adf2edc375ea1038b5cb43c8aec6b1e816d5a964d534d88718",
+      "url": "/api/v1/collected-papers/balaper-a281440-phi2period/files/source?version=2"
+    },
+    "title": "An elementary proof of Su's theorem on Bala's inverse-function period conjectures, with odd-exponent extensions",
+    "versions": [
+      {
+        "previous_version": null,
+        "published_on": "2026-11-23T15:22:06.237687730Z",
+        "revision": "2",
+        "version": 2
+      }
+    ],
+    "work": "balaper-a281440-phi2period"
+  }
+}

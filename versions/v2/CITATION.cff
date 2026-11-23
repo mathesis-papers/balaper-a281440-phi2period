@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this work, cite it."
+title: "An elementary proof of Su's theorem on Bala's inverse-function period conjectures, with odd-exponent extensions"
+authors:
+  - name: "Haobo Ma"
+  - name: "Wenlin Zhang"
+date-released: "2026-11-23"
+version: "2"
+url: "https://mathesis-omega-research.apps.chrono-ai.fun/papers/balaper-a281440-phi2period?version=2"
+license: "CC-BY-4.0"

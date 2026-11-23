@@ -1,0 +1,586 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array,longtable}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\coeff}[2]{[#1]#2}
+\DeclareMathOperator{\End}{End}
+\title{An elementary proof of Su's theorem on Bala's\newline inverse-function period conjectures,\newline with odd-exponent extensions}
+\author{Haobo Ma\\\small ChronoAI Pte Ltd, Singapore
+\and Wenlin Zhang\\\small National University of Singapore\\\small ChronoAI Pte Ltd, Singapore}
+\date{14 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an alternative proof of Lien-Hung Su's theorem (31 October 2026, Theorem 3.2 and Corollary 3.3 \cite{su}) resolving Peter Bala's totient-square period conjecture in OEIS A281440 (COMMENT, 19 February 2026; revision 17, 6 November 2026) \cite{oeis440}.
+For the integral coefficients $a(n)=(2n)![x^{2n}]C(x)$ defined by
+$C(x)=\cosh(\int_0^x C(t)^7\,dt)$, every modulus $m\ge3$ admits the eventual period $\varphi(m)^2/2$; moduli $1,2$ admit period one.
+The proof replaces idempotent lifting by an elementary binomial identity for endomorphisms and includes the vanishing branch at the prime five.
+The same argument covers the four companion conjectures in A281180, A281181, A281183 and A281184, and extends the half-square bound to every integer exponent $a\ge2$ in the associated quadratic derivation.
+We prove the resulting odd-exponent corollaries, source derivative and algebraic identities, and finite-dimensional certificates for the exact period $72$ modulo $13$ and the two displayed A281428 examples.
+\end{abstract}
+
+\section{The source sequence and the theorem}
+Bala asks whether the sequence in A281440 has an eventual period dividing
+$\varphi(m)^2$ for every positive integer $m$ \cite{oeis440}.
+Here $\varphi$ is Euler's totient function, and an eventual period $P$ means
+$a(n+P)\equiv a(n)\pmod m$ for all sufficiently large $n$.
+Su proved the stronger bound $\varphi(m)^2/2$ for $m\ge3$ within a uniform theorem
+for inverse-function sequences \cite[Theorem 3.2]{su}.
+We prove that theorem below using an elementary lifting lemma, then match its
+parameters to the source equations. The congruence results and the seven
+source-specific least periods in Section~\ref{sec:finite} are already in Su's
+Theorem 3.2, Corollary 3.3 and Proposition 3.6.
+Corollary~\ref{cor:odd} extends the argument to odd exponents; the separate
+totient (rather than half-square) bound for A281428 remains Su's Theorem 4.1.
+
+For an integer $a\ge2$ define $S_a,C_a\in\QQ[[x]]$ by
+\begin{equation}\label{eq:flow}
+ S_a'=C_a^a,\qquad C_a'=S_aC_a^{a-1},\qquad S_a(0)=0,\quad C_a(0)=1.
+\end{equation}
+Coefficient recursion gives a unique solution. Differentiating $C_a^2-S_a^2$
+shows that it equals one. If $H_a(0)=0$ and $H_a'=C_a^{a-1}$, then
+$(C_a+S_a)'=H_a'(C_a+S_a)$ and
+$(C_a-S_a)'=-H_a'(C_a-S_a)$. Uniqueness for these linear formal differential
+equations gives $C_a=\cosh H_a$ and $S_a=\sinh H_a$.
+Conversely, $C=\cosh H$, $H'=C^{a-1}$, $H(0)=0$, gives \eqref{eq:flow} with
+$S=\sinh H$. Thus A281440 is exactly the $a=8$ flow, with the even indexing
+used in its source, not an ordinary-coefficient normalization.
+
+Use the integral algebra and derivation
+\begin{equation}\label{eq:derivation}
+ R=\ZZ[s,c]/(c^2-s^2-1),\qquad
+ D(s)=c^a,\quad D(c)=sc^{a-1},\quad E(f)=f(0,1).
+\end{equation}
+The relation is preserved since $D(c^2-s^2-1)=0$. The exponential flow
+$\sum_{j\ge0}E(D^jf)x^j/j!$ is multiplicative by the iterated Leibniz rule.
+Applied to $s,c$, it therefore gives precisely \eqref{eq:flow}.
+For $k,n\ge0$ put
+\begin{equation}\label{eq:columns}
+ b_{a,k}(n)=E(D^{2n}c^k)=(2n)![x^{2n}]C_a(x)^k\in\ZZ.
+\end{equation}
+This proves integrality as well as the coefficient identification.
+For direct integer evaluation one may also use
+\begin{equation}\label{eq:recurrence}
+ b_{a,k}(0)=1,\quad
+ b_{a,k}(n)=k\bigl((k+a-1)b_{a,k+2a-2}(n-1)
+              -(k+a-2)b_{a,k+2a-4}(n-1)\bigr).
+\end{equation}
+Indeed $D^2c^k=k\bigl((k+a-1)c^{k+2a-2}-(k+a-2)c^{k+2a-4}\bigr)$;
+apply $E D^{2n-2}$. The $a=4$ recurrence is credited to Seiichi Manyama
+in the source \cite{oeis181}; Su states the general form
+\cite[Lemma 3.1]{su}.
+
+\begin{theorem}[Su's even-exponent period theorem]\label{thm:period}
+Let $a=2d\ge2$, $k\ge0$, and $m\ge3$. For each odd prime $p$, put
+\[
+ \alpha_{a,p}=(-1)^h\binom{d+h-1}{h}\pmod p,\qquad h=(p-1)/2.
+\]
+For $p^r\Vert m$, define
+\[
+ N_a(p^r)=
+ \begin{cases}
+ r,&p=2\text{ or }(p\text{ odd and }\alpha_{a,p}\ne0),\\
+ \left\lceil r\bigl(1+(p-1)p^{r-1}\bigr)/2\right\rceil,
+      &p\text{ odd and }\alpha_{a,p}=0,
+ \end{cases}
+\]
+Put $N_a(m)=\max_{p^r\Vert m}N_a(p^r)$. Then for every $n\ge N_a(m)$,
+\begin{equation}\label{eq:uniform}
+ b_{a,k}\bigl(n+\varphi(m)^2/2\bigr)\equiv b_{a,k}(n)\pmod m.
+\end{equation}
+For $m=1,2$ an eventual period of one is valid.
+\end{theorem}
+
+\section{An elementary prime-power proof}
+\begin{lemma}\label{lem:lift}
+Let $M$ be a finite free module over $\ZZ/p^r\ZZ$, let $A\in\End(M)$, and
+suppose $A^{T+1}\equiv A\pmod p$, with $T\ge1$. Then
+\[
+ (A^{Tp^{r-1}}-I)A^r=0.
+\]
+\end{lemma}
+\begin{proof}
+Set $B=A^T-I$ and $L=p^{r-1}$. Since $BA$ is divisible by $p$, the commuting
+product $B^jA^r$ is divisible by $p^j$ when $1\le j\le r$, and by $p^r$
+when $j>r$. Expand
+\[
+ (A^{TL}-I)A^r=\sum_{j=1}^L\binom Lj B^jA^r.
+\]
+For $1\le j\le\min(r,L)$, the identity
+$j\binom Lj=L\binom{L-1}{j-1}$ gives
+$v_p(\binom Lj)\ge r-1-v_p(j)$. Since $j-v_p(j)\ge1$, each summand is
+divisible by $p^r$. The remaining summands already contain $p^r$.
+\end{proof}
+
+Fix a prime power $q=p^r$. The algebra
+\[
+ M_q=(\ZZ/q\ZZ)[s,c]/(s^q,c^2-s^2-1)
+\]
+is free of rank $2q$, with basis $s^j,cs^j$ for $0\le j<q$.
+The derivation descends because $D(s^q)=qs^{q-1}c^a=0$. Evaluation at
+$(0,1)$ remains well defined, so endomorphism identities on this algebra give
+the desired coefficient congruences.
+
+Suppose first that $p$ is odd. Modulo $p$ the polynomial $1+s^2$ has a unique
+square root $u=1+O(s^2)$ in $\FF_p[s]/(s^q)$, obtained recursively using the
+invertibility of two. The factors $c-u,c+u$ are comaximal because $2u$ is a
+unit. On either resulting branch, $c^a=(1+s^2)^d$ since $a=2d$, and
+\[
+ D=f(s)\frac{d}{ds},\qquad f(s)=(1+s^2)^d.
+\]
+The $p$th iterate of a derivation is a derivation: the intermediate binomial
+coefficients in its product rule vanish in characteristic $p$.
+Every derivation on this truncated polynomial algebra is determined by its
+value at $s$. Since $f$ is a unit, $D^p=\lambda D$ for some $\lambda$.
+Commutation with $D$ gives $D\lambda=0$, whence
+$\lambda\in\FF_p[s^p]/(s^q)$.
+
+We compute its constant term explicitly. In $\FF_p[s]/(s^p)$ write
+$f^{-1}=\sum_{j=0}^{p-1}\beta_js^j$ and put
+$y=\sum_{j=0}^{p-2}\beta_js^{j+1}/(j+1)$.
+Here $\beta_0=1$, so $y=s+O(s^2)$ is a coordinate. If
+$\alpha=\beta_{p-1}$, then
+\[
+ Dy=1-\alpha s^{p-1}f=1-\alpha y^{p-1}.
+\]
+The scalar in $D^p=\lambda D$ is constant in this smaller quotient.
+Evaluating $D^py=-\alpha D^{p-1}y^{p-1}$ at zero gives
+$-\alpha(p-1)!=\alpha$ by Wilson's theorem. Thus
+\[
+ \lambda(0)=\alpha=[s^{p-1}](1+s^2)^{-d}
+     =(-1)^h\binom{d+h-1}{h}=\alpha_{a,p}.
+\]
+On the larger quotient, $D\lambda=0$ implies inductively
+$D^{1+(p-1)t}=\lambda^tD$. Frobenius and $s^{p^r}=0$ give
+\begin{equation}\label{eq:restricted}
+ D^J=\alpha D\pmod p,\qquad J=1+(p-1)p^{r-1}.
+\end{equation}
+If $\alpha=0$, the endomorphism $D^J$ is divisible by $p$, so
+$D^{rJ}=0\pmod{p^r}$. Hence every $b_{a,k}(n)$ vanishes modulo $p^r$
+for $2n\ge rJ$, and every positive shift is then a period.
+
+If $\alpha\ne0$, take $t=(p-1)p^{r-1}$ in the preceding identity.
+It gives $D^{T+1}=D\pmod p$ for $T=(p-1)^2p^{r-1}$.
+Lemma~\ref{lem:lift}, with $A=D$, proves
+\[
+ (D^{\varphi(p^r)^2}-I)D^r=0\pmod{p^r}.
+\]
+Since $\varphi(p^r)^2$ is even, evaluation on $D^{2n}c^k$ gives the
+column-index shift $\varphi(p^r)^2/2$ whenever $n\ge r$.
+
+At $p=2$, let $A=D^2$. Modulo two it is itself a derivation, and direct
+differentiation of \eqref{eq:derivation} gives
+\[
+ A(s)=0,\qquad A(c)=c(1+s^2)^{a-2}.
+\]
+Thus on $u(s)+cv(s)$, $A$ kills the first summand and multiplies the second
+by $w=(1+s^2)^{a-2}$. In the quotient $s^{2^r}=0$, for $r\ge2$,
+\[
+ w^{2^{r-2}}=(1+s^{2^{r-1}})^{a-2}=1\pmod2,
+\]
+because $a-2$ is even and the square of $s^{2^{r-1}}$ vanishes.
+For $r=1$ take $T=1$; for $r\ge2$ take $T=2^{r-2}$.
+Then $A^{T+1}=A\pmod2$, and Lemma~\ref{lem:lift} yields a period
+$T2^{r-1}$ in the column index once $n\ge r$.
+This is $\varphi(2^r)^2/2$ for $r\ge2$, and one for $r=1$.
+
+Finally, $\varphi(p^r)$ divides $\varphi(m)$ for every $p^r\Vert m$.
+For odd $p$, and for $p=2,r\ge2$, both totients are even, so the local
+half-square period divides $\varphi(m)^2/2$. The remaining local period
+is one. Vanishing branches admit every shift. The Chinese remainder
+theorem proves \eqref{eq:uniform}, including the stated threshold.
+Modulus one is immediate, and the $r=1$ two-primary argument proves
+the assertion for modulus two. This completes the proof of
+Theorem~\ref{thm:period}.
+
+For A281440 the scalar is especially transparent:
+\[
+ \alpha_{8,3}=2,\qquad \alpha_{8,5}=0,\qquad
+ \alpha_{8,p}=(-1)^{(p-1)/2}\frac5{16}\quad(p\ge7).
+\]
+Thus five is its only odd vanishing prime. In particular,
+$a(n)\equiv0\pmod{5^r}$ once
+$n\ge\lceil r(1+4\cdot5^{r-1})/2\rceil$.
+For $a=4$, $\alpha_{4,p}=(-1)^{(p-1)/2}/2\ne0$ at every odd prime.
+
+\begin{corollary}[All integer exponents]\label{cor:odd}
+Theorem~\ref{thm:period} holds for every integer $a\ge2$, using
+\[
+ \alpha_{a,p}=(-1)^h\prod_{j=0}^{h-1}\frac{a+2j}{2(j+1)}\in\FF_p,
+ \qquad h=(p-1)/2.
+\]
+For odd $a\ge3$, this scalar vanishes at every prime $p\ge a$.
+For the odd source flows $a=5,7,9$, the only nonvanishing odd primes
+are respectively $\{3\}$, $\{3,5\}$ and $\{5,7\}$.
+Consequently all their columns eventually vanish modulo every positive
+integer coprime to $6$, $30$ and $70$, respectively.
+\end{corollary}
+\begin{proof}
+For odd $p$, use the same square root $u^2=1+s^2$ in $\FF_p[s]/(s^{p^r})$.
+The two branches are now $D=\pm u^a\partial_s$.
+The coordinate calculation above applies to the unit $f=u^a$; the coefficient
+$[s^{p-1}]f^{-1}$ is the displayed product, whose denominators are units.
+Replacing $D$ by $-D$ leaves the scalar in $D^p=\lambda D$ unchanged because
+$p$ is odd. Thus $D\lambda=0$, the Frobenius argument and both odd-prime
+lifting cases are identical to those above.
+
+At two put $A=D^2$. For odd $a$, direct differentiation gives
+$A(s)=sw$ and $A(c)=cw$ modulo two, with $w=(1+s^2)^{a-1}$ and $A(w)=0$.
+Therefore
+$A(s^jc^e)=(j+e)w s^jc^e$ for $e=0,1$.
+For $r=1$ take $T=1$; for $r\ge2$ take $T=2^{r-2}$.
+Since $a-1$ is even,
+$w^T=(1+s^{2^{r-1}})^{a-1}=1$ in the latter case; for $r=1$ also $w=1$.
+On both parity classes this gives $A^{T+1}=A$ modulo two.
+Lemma~\ref{lem:lift} supplies exactly the same two-primary shift and threshold.
+The Chinese remainder argument is unchanged.
+
+If $a$ is odd and $p\ge a$, the numerator product contains $p$, at
+$j=(p-a)/2$, whereas its denominator is prime to $p$.
+Checking the odd primes below $5,7,9$ in the product gives the stated sets.
+The vanishing branch and the Chinese remainder theorem prove the final assertion.
+\end{proof}
+
+\section{Companion statements and source coverage}
+The identities below follow from \eqref{eq:flow} and the source definitions
+\cite{oeis180,oeis181,oeis183,oeis184,oeis440,oeiscompanions}:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Entry & Column & Index range\\
+\midrule
+A281180 & $b_{4,4}(n-1)$ & $n\ge1$\\
+A281181 & $b_{4,1}(n)$ & $n\ge0$\\
+A281183 & $b_{4,2}(n)$ & $n\ge0$\\
+A281184 & $b_{4,3}(n)$ & $n\ge0$\\
+A281440 & $b_{8,1}(n)$ & $n\ge0$\\
+A281439 & $b_{8,8}(n-1)$ & $n\ge1$\\
+A281432 & $b_{6,1}(n)$ & $n\ge0$\\
+A281427 & $b_{5,5}(n-1)$ & $n\ge1$\\
+A281428 & $b_{5,1}(n)$ & $n\ge0$\\
+A281436 & $b_{7,1}(n)$ & $n\ge0$\\
+A281443 & $b_{9,9}(n-1)$ & $n\ge1$\\
+A281444 & $b_{9,1}(n)$ & $n\ge0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For the odd series, differentiating $S_a$ gives
+$(2n+1)![x^{2n+1}]S_a=b_{a,a}(n)$.
+A281180, A281427, A281439 and A281443 list these coefficients from OEIS
+index one. Their first value is $S_a'(0)=1$, so their column index is $n-1$.
+\begin{corollary}[Source periods]\label{cor:sources}
+The five totient-square conjectures in the first five rows are proved by
+Theorem~\ref{thm:period}, as in Su's Corollary 3.3.
+Every row has eventual period $\varphi(m)^2/2$ for $m\ge3$, and period one
+for $m=1,2$. For A281180, A281427, A281439 and A281443 add one to the column
+threshold; all other rows use $N_a(m)$ directly.
+The odd-exponent half-square statements are consequences of
+Corollary~\ref{cor:odd}, not conjectures asserted by those entries.
+\end{corollary}
+\begin{proof}
+The column identifications follow from the source definitions and $S_a'=C_a^a$.
+Apply Theorem~\ref{thm:period} and Corollary~\ref{cor:odd}.
+\end{proof}
+
+\begin{corollary}[Source derivative identities]\label{cor:derivatives}
+For any $a\ge2$, let $\theta(0)=0$, $\theta'=\sec^{a-2}\theta$.
+Then
+\begin{equation}\label{eq:trig}
+ (2n)![x^{2n}]C_a(x)
+   =\left.\left(\sec^{a-2}\theta\,\frac d{d\theta}\right)^{2n}
+       \sec\theta\right|_{\theta=0}.
+\end{equation}
+The formula marked with a question mark in A281436
+(Bala, FORMULA, 23 December 2025), with $a=7$, as well as the displayed
+formulas in A281432, A281440 and A281444 are therefore valid.
+The tentative A281183 formula is valid as well.
+\end{corollary}
+\begin{proof}
+The substitutions $s=\tan\theta$, $c=\sec\theta$ satisfy \eqref{eq:flow}.
+Uniqueness and the chain rule prove \eqref{eq:trig}.
+For A281183 put $u(z)=1+z^2$, $D_0=u^2\partial_z$ and
+$L f=u\partial_z(uf)$. Then $L=u^{-1}D_0u$, so
+$L^j1=u^{-1}D_0^ju$. Evaluation at zero and the $a=4$ flow give
+$L^{2n}1(0)=b_{4,2}(n)$. This is the tentative derivative formula in
+its FORMULA block, already proved by Su \cite[Proposition 3.5]{su}.
+\end{proof}
+
+These derivative representations belong to the inverse-function methods of
+Dominici \cite[Theorem 4.1]{dominici} and Bala \cite[Corollary 1]{graves}.
+Their other nested-derivative instances follow from a single conjugation:
+for a formal unit $F(v)$ with $F(0)=1$, put $V=F\partial_v$ and
+$L=\partial_v\circ F$. Then
+\begin{equation}\label{eq:leftnested}
+ L=F^{-1}VF,\qquad (L^jg)(0)=(V^j(Fg))(0).
+\end{equation}
+If $v'=F(v)$, $v(0)=0$, the right side is $j![x^j](Fg)(v(x))$.
+For A281428 take $F=\sec^3v$, $g=\cos^2v$; this proves its recorded
+left-nested formula since $Fg=\sec v$ and the flow gives $C_5$.
+For A281181 take $F=(1-v^2)^{-1/2}$, $g=(1-v^2)^{-k/2}$;
+the result is $(2n)![x^{2n}]C_4^{k+1}$, specifying the exponential
+coefficient convention for its parameterized formula.
+
+\begin{corollary}[Algebraic companion identities]\label{cor:algebraic}
+For $a=2d+1\ge3$ set $T=S_a/C_a$. Then
+\begin{equation}\label{eq:algebraic}
+ x=\sum_{j=0}^{d-1}\frac{(-1)^j\binom{d-1}{j}}{2j+1}T^{2j+1},
+ \qquad C_a=(1-T^2)^{-1/2},\quad S_a=TC_a.
+\end{equation}
+In particular, the algebraic equations for $S_5,C_5,T$ in A281427
+(Bala, FORMULA, 14 December 2025) and $C_7$ in A281436
+(FORMULA, 23 December 2025) hold. In A281181 the displayed term
+\texttt{13*x\^{}5/6!} in $T=S_4/C_4$ (FORMULA, 14 December 2025)
+must instead be $13x^5/5!$.
+\end{corollary}
+\begin{proof}
+The quotient rule gives $T'=C_a^{a-3}$ and $1-T^2=C_a^{-2}$.
+Thus $dx/dT=(1-T^2)^{d-1}$, whose integral is \eqref{eq:algebraic}.
+For $a=5$ this is $3x=3T-T^3$. Substitution gives
+\[
+ (4-9x^2)C_5^6-3C_5^2-1=0,
+\]
+and, since $C_5^2=1+S_5^2$, also
+\[
+ (4-9x^2)S_5^6+3(4-9x^2)S_5^4+9(1-3x^2)S_5^2-9x^2=0.
+\]
+For $a=7$, $15x=15T-10T^3+3T^5$; inserting
+$C_7^2=(1-T^2)^{-1}$ gives
+$(225x^2-64)C_7^{10}+40C_7^4+15C_7^2+9=0$.
+All branches have the initial values of \eqref{eq:flow}.
+Finally $T'=C_4$ in the $a=4$ case, and
+$C_4=1+x^2/2!+13x^4/4!+\cdots$ by \eqref{eq:recurrence};
+integration proves the corrected $x^5$ coefficient.
+\end{proof}
+
+{\small
+\begin{longtable}{p{.25\linewidth}p{.66\linewidth}}
+\toprule
+Source item & Coverage\\
+\midrule
+Five conjectures above & Proved: alternative proof of Su's Theorem 3.2 and Corollary 3.3, with the exact source columns and offsets.\\
+A281439, A281432 & Not posed; period bound proved as companion columns.\\
+A281440 mod-$13$ example & Proved: least period and scalar-column structure in Section~\ref{sec:finite}; prior proof in Su's Proposition 3.6.\\
+A281181/183/184 residue examples & Proved: exact periods and mod-$12$ identity below; prior proofs in Su's Proposition 3.6.\\
+A281183 derivative formula & Proved by Corollary~\ref{cor:derivatives}; prior proof in Su's Proposition 3.5.\\
+A281436 derivative question & Answered: yes, by Corollary~\ref{cor:derivatives}; the question is the final FORMULA of 23 December 2025.\\
+A281428 conjectures & Prior proof cited: Su's Theorem 4.1 gives eventual zero away from $2,3$, and eventual period dividing $\varphi(m)$; not reproved here.\\
+A281428 two examples & Proved: zero modulo $385$ from index $6$, and least period $18$ modulo $27$ from index $7$, by Section~\ref{sec:finite}.\\
+A281427, A281436, A281443, A281444 & Not posed; odd-exponent half-square bounds proved in Corollaries~\ref{cor:odd}--\ref{cor:sources}. Vanishing is proved away from $6,30,70$ for $a=5,7,9$, respectively.\\
+A281427 and A281436 algebraic formulas & Proved as recorded, by Corollary~\ref{cor:algebraic}; these formulas predate the period conjectures.\\
+A281181 displayed $T$ series & Refuted-and-corrected: the term printed as \texttt{13*x\^{}5/6!} is $13x^5/5!$ (FORMULA, 14 December 2025).\\
+Nested-derivative formulas & Proved via \eqref{eq:trig} and \eqref{eq:leftnested}, with the exponential coefficient normalization. Earlier methods: Dominici and Bala.\\
+General rectangular-layout remarks & The prime scalar relation is proved below; Corollary~\ref{cor:rows} gives Su's higher-order composite row relation for $a=4$. A universal rank-one interpretation at every composite modulus is not asserted in the source and is not adopted here.\\
+\bottomrule
+\end{longtable}}
+
+\section{Finite-dimensional certificates}\label{sec:finite}
+Here is a finite proof of the source's mod-$13$ example, rather than an
+extrapolation from a long prefix. Write $z=s^2$ and $c^ef(z)$, where
+$e\in\{0,1\}$. On this parity component $D^2$ induces
+\begin{equation}\label{eq:matrix}
+ g=ef+2(1+z)f',\qquad
+ B_{a,e}f=(1+z)^{a-2}\bigl((1+(e+a-1)z)g+2z(1+z)g'\bigr).
+\end{equation}
+For an integer $m\ge2$, put $h=\lceil m/2\rceil$ and reduce modulo
+$(m,z^h)$. The only degree-lowering coefficient on $z^h$ is
+$2h(2h-1)$, divisible by $m$; higher monomials remain in $(z^h)$.
+Thus this quotient is $B_{a,e}$-stable and has rank $h$.
+For $k=e+2t$ the initial polynomial is $(1+z)^t$, and
+\[
+ b_{a,k}(n)\equiv[z^0]B_{a,e}^n(1+z)^t\pmod m.
+\]
+By Cayley--Hamilton, any such scalar sequence satisfies the monic
+degree-$h$ characteristic recurrence over $\ZZ/m\ZZ$.
+Consequently $h$ consecutive zero differences
+$b(n+P)-\gamma b(n)$ imply all subsequent zero differences.
+
+For $(a,e,m)=(8,1,13)$, recurrence \eqref{eq:matrix} gives
+\[
+ (a(0),\ldots,a(12))\equiv(1,1,3,5,7,8,6,6,5,4,3,9,10)\pmod{13}.
+\]
+The seven differences $a(j+6)-6a(j)$ vanish for $0\le j\le6$.
+Since $h=7$, it follows that
+\begin{equation}\label{eq:scalar}
+ a(n+6)\equiv6a(n)\pmod{13}\qquad(n\ge0).
+\end{equation}
+The unit six has order twelve modulo thirteen, so $72$ is a period from
+index zero. It is the least period: $a(36)\equiv6^6\equiv12\not\equiv a(0)$ and
+$a(24)\equiv6^4\equiv9\not\equiv a(0)\pmod{13}$ exclude shifts $72/2$ and $72/3$.
+Every proper divisor of $72$ divides one of these shifts, and the least
+period divides every period of a purely periodic sequence.
+Equation~\eqref{eq:scalar} also proves
+$a(j+6\ell)=6^\ell a(j)\pmod{13}$ for $0\le j<6$ and $\ell\ge0$.
+The source's displayed rectangle starts at $a(1)$; its first twelve entries
+therefore omit the initial $a(0)=1$.
+More generally the characteristic-$p$ identity above gives
+$b_{a,k}(n+(p-1)/2)=\alpha_{a,p}b_{a,k}(n)\pmod p$ for $n\ge1$.
+It explains the geometric rows at odd primes. The source's precise layouts
+also have rank-$h$ scalar certificates: A281180 modulo $7$ has shift $6$
+and multiplier $2$ from index $1$; A281181 modulo $13$ has shift $6$ and
+multiplier $7$ from index $0$; A281183 and A281184 modulo $11$ have
+shift $5$ and multiplier $5$ from index $1$. All five scalar certificates
+are included with the supplementary program.
+
+\begin{corollary}[Composite residue rows]\label{cor:rows}
+Let $m\ge2$, $r_* =\max_{p\mid m}v_p(m)$, and, for $p^r\Vert m$, set
+\[
+ h_{p^r}=(p-1)p^{r-1}/2\ (p\text{ odd}),\qquad
+ h_2=1,\quad h_{2^r}=2^{r-2}\ (r\ge2).
+\]
+Put $H=\operatorname{lcm}_{p^r\Vert m}h_{p^r}$.
+Choose a unit $C_m$ whose reduction modulo each odd $p$ is
+$\alpha_{4,p}^{H/h_{p^r}}$, and whose reduction modulo two is one.
+For every $k\ge0$, $n\ge r_*$, and $j\ge0$, the rows
+$u_j=b_{4,k}(n+jH)$ satisfy
+\[
+ \sum_{t=0}^{r_*}(-1)^{r_*-t}\binom{r_*}{t}C_m^{r_*-t}u_{j+t}
+ \equiv0\pmod m.
+\]
+For squarefree $m$, this is the geometric row law $u_{j+1}=C_mu_j$.
+\end{corollary}
+\begin{proof}
+This is Su's Proposition 3.4, with the following direct deduction from the
+operators above. Set $A=D^2$ on $M_{p^r}$.
+For odd $p$, \eqref{eq:restricted} gives
+$(A^{h_{p^r}}-\alpha_{4,p})D=0$ modulo $p$, hence the same identity with
+$D$ replaced by $A$. At two use $A^{h_{2^r}+1}=A$ modulo two.
+As $h_{p^r}\mid H$, $(A^H-C_m)A$ is divisible by $p$.
+Its commuting $r$th power is zero modulo $p^r$.
+Multiplication by $(A^H-C_m)^{r_*-r}A^{n-r}$ and evaluation on $c^k$
+prove the displayed relation locally; the Chinese remainder theorem combines it.
+\end{proof}
+
+For completeness, the same rank-$h$ criterion yields the following
+source-specific certificates. The first seven are in Su
+\cite[Proposition 3.6]{su}; the last is Bala's A281428 example.
+The supplementary program gives every zero difference and every shorter-shift
+witness. In the last column, $q:(i;u,v)$ means that shift $P/q$ has
+values $u,v$ at index $i$ and $i+P/q$.
+\begin{center}\small
+\begin{tabular}{lrrrrl}
+\toprule
+Entry & $m$ & $P$ & Start & $h$ & Shorter-shift witnesses\\
+\midrule
+A281180 & 7 & 18 & 1 & 4 & $2:(1;1,6),\ 3:(1;1,2)$\\
+A281181 & 10 & 8 & 0 & 5 & $2:(0;1,9)$\\
+A281181 & 9 & 3 & 1 & 5 & $3:(1;1,4)$\\
+A281181 & 13 & 72 & 0 & 7 & $2:(0;1,12),\ 3:(0;1,9)$\\
+A281183 & 11 & 25 & 1 & 6 & $5:(1;2,10)$\\
+A281184 & 11 & 25 & 1 & 6 & $5:(1;3,4)$\\
+A281440 & 13 & 72 & 0 & 7 & $2:(0;1,12),\ 3:(0;1,9)$\\
+A281428 & 27 & 18 & 7 & 14 & $2:(7;1,26),\ 3:(7;1,19)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For the mod-$12$ observation attributed to Paul Curtz in A281181, the same
+operator with rank six gives $b_{4,1}(j)=1$ for $0\le j\le6$.
+Its six successive differences vanish, so $b_{4,1}(n)=1\pmod{12}$ for
+every $n\ge0$. This proves the recorded divisibility of every shift difference.
+For A281428 modulo $385$, the first six residues are
+$(1,1,17,95,315,105)$. The $193$ residues at indices $6$ through $198$
+are zero. Since $h=193$, the characteristic recurrence proves that all
+terms from index $6$ are zero. At modulus $27$, fourteen zero differences
+at indices $7$ through $20$ prove period $18$ from index $7$.
+The shorter-shift witnesses in the table prove its least value.
+These are the two concrete examples signed by Bala on 3 March 2026,
+and are consequences of the same finite-dimensional method.
+
+\section{Mathematical verification scope}
+The pinned Lean declaration
+\href{https://github.com/the-omega-institute/trureturing/blob/92de86888730265f84e24d28bdb67546c543a966/D5/S1/Recurrence/Periodic/BalaA281440TotientSquarePeriod.lean}{\nolinkurl{BalaA281440TotientSquarePeriod.result}}
+proves existence of rational formal series $H,C$, $H(0)=0$, $H'=C^7$,
+$C=(\exp H+\exp(-H))/2$, and integer even exponential coefficients with
+an eventual shift $\varphi(m)^2$ for every $m\ge1$.
+The coefficient-uniqueness argument in Section~1 identifies these witnesses
+with the source sequence. In the pinned
+\href{https://github.com/the-omega-institute/trureturing/blob/92de86888730265f84e24d28bdb67546c543a966/D5/S1/Recurrence/Periodic/BalaA281181TotientSquarePeriod.lean}{\nolinkurl{BalaA281181TotientSquarePeriod.lean}},
+the theorem \texttt{even\_sequence\_period} in the
+\texttt{BalaPolynomialSystem} namespace proves the
+$\varphi(m)^2$ shift for exponents $a=4,8$ and every power $k\ge0$.
+That file's \texttt{result} specializes to A281181.
+The three further pinned files
+\href{https://github.com/the-omega-institute/trureturing/blob/92de86888730265f84e24d28bdb67546c543a966/D5/S1/Recurrence/Periodic/BalaA281180TotientSquarePeriod.lean}{\nolinkurl{BalaA281180TotientSquarePeriod.lean}},
+\href{https://github.com/the-omega-institute/trureturing/blob/92de86888730265f84e24d28bdb67546c543a966/D5/S1/Recurrence/Periodic/BalaA281183TotientSquarePeriod.lean}{\nolinkurl{BalaA281183TotientSquarePeriod.lean}} and
+\href{https://github.com/the-omega-institute/trureturing/blob/92de86888730265f84e24d28bdb67546c543a966/D5/S1/Recurrence/Periodic/BalaA281184TotientSquarePeriod.lean}{\nolinkurl{BalaA281184TotientSquarePeriod.lean}}
+each contain a \texttt{result} proving the corresponding full-square shift.
+The first uses $S'=(1+S^2)^2$ and odd exponential coefficients at indices
+$2n-1$, $n\ge1$; the other two use the even exponential coefficients
+of $C_4^2$ and $C_4^3$. The last also includes
+$(\log(C_4+S_4))'=C_4^3$. All these statements include integrality and
+the specified rational-series witnesses.
+The sharper half-square period, explicit thresholds, every integer $a\ge2$,
+and the derivative and algebraic identities have written proofs above. The least periods
+and residue identities have the finite-dimensional proofs of Section~\ref{sec:finite}.
+These are distinct scopes.
+
+\paragraph{Supplementary material.}
+The accompanying source package contains this \LaTeX{} source, a Python 3
+program \texttt{verify.py}, its exact arithmetic certificates in
+\texttt{checks.json}, and build instructions. The program compares two
+integer coefficient methods at 396 entries across twelve source families,
+matches their displayed prefixes (including all 17 A281440 terms), and
+supplies 192 uniform-period certificates and 420 further odd-exponent
+certificates, in addition to the eight least-period certificates above,
+the scalar relations and the algebraic identities.
+The universal theorem is established by the written prime-power proof,
+independently of these finite checks.
+
+\paragraph{License.}
+This note is licensed under Creative Commons Attribution 4.0 International
+(CC BY 4.0).
+
+\begin{thebibliography}{9}
+\bibitem{su}
+Lien-Hung Su, \emph{Quadratic Derivations and Uniform Modular Periods for Six
+Inverse-Function Sequences}, version 1, 31 October 2026,
+\href{https://doi.org/10.5281/zenodo.23835577}{doi:10.5281/zenodo.23835577}.
+Theorem 3.2, Corollary 3.3, Propositions 3.4--3.6 and Theorem 4.1.
+\bibitem{oeis440}
+OEIS Foundation Inc., \href{https://oeis.org/A281440}{A281440}, revision 17,
+6 November 2026. Sequence submitted by Paul D. Hanna, 21 January 2017;
+period conjecture by Peter Bala, 19 February 2026.
+\bibitem{oeis180}
+OEIS Foundation Inc., \href{https://oeis.org/A281180}{A281180}, revision 86,
+6 November 2026. Period conjecture by Peter Bala, 18 February 2026.
+\bibitem{oeis181}
+OEIS Foundation Inc., \href{https://oeis.org/A281181}{A281181}, revision 103,
+6 November 2026. Period conjecture by Peter Bala, 16 February 2026;
+residue observations by Paul Curtz, 20 January 2017;
+integer column recurrence by Seiichi Manyama, 14 April 2026.
+\bibitem{oeis183}
+OEIS Foundation Inc., \href{https://oeis.org/A281183}{A281183}, revision 60,
+6 November 2026. Period conjecture by Peter Bala, 16 February 2026.
+\bibitem{oeis184}
+OEIS Foundation Inc., \href{https://oeis.org/A281184}{A281184}, revision 41,
+6 November 2026. Period conjecture by Peter Bala, 16 February 2026.
+\bibitem{oeiscompanions}
+OEIS Foundation Inc., companion entries
+\href{https://oeis.org/A281427}{A281427} (rev. 29),
+\href{https://oeis.org/A281428}{A281428} (rev. 54),
+\href{https://oeis.org/A281432}{A281432} (rev. 10),
+\href{https://oeis.org/A281436}{A281436} (rev. 10),
+\href{https://oeis.org/A281439}{A281439} (rev. 6),
+\href{https://oeis.org/A281443}{A281443} (rev. 5),
+\href{https://oeis.org/A281444}{A281444} (rev. 9).
+All OEIS entries consulted 14 November 2026.
+\bibitem{dominici}
+Diego Dominici, \emph{Nested derivatives: a simple method for computing
+series expansions of inverse functions}, International Journal of Mathematics
+and Mathematical Sciences \textbf{2003} (58), 3699--3715,
+\href{https://doi.org/10.1155/S0161171203303291}{doi:10.1155/S0161171203303291};
+\href{https://arxiv.org/abs/math/0501052v2}{arXiv:math/0501052v2}, Theorem 4.1.
+\bibitem{graves}
+Peter Bala, \emph{The method of Graves for computing inverse functions},
+26 January 2026,
+\url{https://oeis.org/A281181/a281181.pdf}, Corollary 1.
+\end{thebibliography}
+\end{document}
